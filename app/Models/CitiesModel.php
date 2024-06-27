@@ -18,7 +18,7 @@ class CitiesModel extends Model
     protected $validationRules = [
         'name'      => 'required|alpha_numeric_punct|min_length[3]|max_length[100]',
         'country_id'      => 'required',
-        'state_id'      => 'state_id',
+        'state_id'      => 'required',
     ];
 
     protected $column_order = ['id', 'name', 'country', 'states'];
