@@ -24,3 +24,12 @@ $routes->post('states/getStates', 'States::getStates', ['filter' => 'role:admini
 
 $routes->get('cities/index', 'Cities::index', ['filter' => 'role:administrator']);
 $routes->post('cities/getCities', 'Cities::getCities', ['filter' => 'role:administrator']);
+
+$routes->get('uom/index', 'UOM::index', ['filter' => 'role:administrator']);
+$routes->post('uom/getUOM', 'UOM::getUOM', ['filter' => 'role:administrator']);
+
+$routes->get('uom/index', 'UOM::index', ['filter' => 'role:administrator']);
+$routes->post('uom/getUOM', 'UOM::getUOM', ['filter' => 'role:administrator']);
+
+$routes->get('company/index', 'Company::index', ['filter' => 'role:administrator']);
+$routes->post('company/getCompany', 'Company::getCompany', ['filter' => 'role:administrator']);
