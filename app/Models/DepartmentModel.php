@@ -5,24 +5,30 @@ namespace App\Models;
 use CodeIgniter\Model;
 use CodeIgniter\HTTP\RequestInterface;
 
-class CitiesModel extends Model
+class DepartmentModel extends Model
 {
 
-    protected $table          = 'cities';
+    protected $table          = 'department_master';
     protected $primaryKey     = 'id';
     protected $useSoftDeletes = true;
     protected $allowedFields  = [
-        'id', 'name', 'country_id',  'state_id', 
+        'id', 'comp_code', 'site_code', 'dept_code', 'dept_name', 'dept_pic'
+        , 'dept_add', 'dept_city', 'dept_prov', 'dept_count', 'dept_post', 'dept_phone1', 'dept_phone2', 'dept_phone3'
+        , 'dept_badd', 'dept_bcity', 'dept_bprov', 'dept_bcount', 'dept_bpost', 'dept_bphone1', 'dept_bphone2', 'dept_bphone3'
+        , 'dept_madd', 'dept_mcity', 'dept_mprov', 'dept_mcount', 'dept_mpost', 'dept_mphone1', 'dept_mphone2', 'dept_mphone3'
+        , 
     ];
     protected $useTimestamps   = true;
     protected $validationRules = [
-        'name'      => 'required|alpha_numeric_punct|min_length[3]|max_length[100]',
-        'country_id'      => 'required',
-        'state_id'      => 'required',
+        'dept_code'      => 'required|is_unique[department_master.dept_code]|min_length[3]|max_length[12]',
+        'comp_code'      => 'required',
+        'site_code'      => 'required',
+        'dept_name'      => 'required',
+        'dept_pic'      => 'required',
     ];
 
-    protected $column_order = ['id', 'name', 'country', 'states'];
-    protected $column_search = ['name', 'country', 'states'];
+    protected $column_order = ['id', 'comp_code', 'site_code', 'dept_code', 'dept_name', 'dept_pic'];
+    protected $column_search = ['dept_code', 'comp_code', 'site_code', 'dept_name', 'dept_pic'];
     protected $order = ['id' => 'ASC'];
     protected $request;
     protected $db;
@@ -83,24 +89,22 @@ class CitiesModel extends Model
         return $tbl_storage->countAllResults();
     }
 
-    public function getByCountry($id = '')
-    {
-        $this->dt->where('country_id', $id);
-        $query = $this->dt->get();
-        return $query->getResult();        
-    }
-
-    public function getByState($id = '')
-    {
-        $this->dt->where('state_id', $id);
-        $query = $this->dt->get();
-        return $query->getResult();        
-    }
-
-    public function getCity($id = '')
+    public function getDepartment($id = '')
     {
         $this->dt->where('id', $id);
         $query = $this->dt->get();
         return $query->getResult();        
+    }
+
+    function updateData($id, $data) 
+    {
+        $this->dt->where('id', $id);
+        return $this->dt->update($data);
+    }
+
+    function deleteData($id) 
+    {
+        $this->dt->where('id', $id);
+        return $this->dt->delete();
     }
 }

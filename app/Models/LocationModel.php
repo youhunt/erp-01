@@ -5,24 +5,29 @@ namespace App\Models;
 use CodeIgniter\Model;
 use CodeIgniter\HTTP\RequestInterface;
 
-class CitiesModel extends Model
+class LocationModel extends Model
 {
 
-    protected $table          = 'cities';
+    protected $table          = 'location_master';
     protected $primaryKey     = 'id';
     protected $useSoftDeletes = true;
     protected $allowedFields  = [
-        'id', 'name', 'country_id',  'state_id', 
+        'id', 'comp_code', 'site_code', 'whs_code', 'loc_code', 'loc_name', 'loc_pic'
+        , 'loc_add', 'loc_city', 'loc_prov', 'loc_count', 'loc_post', 'loc_phone1', 'loc_phone2', 'loc_phone3'
+        , 'whs_dadd', 'whs_dcity', 'whs_dprov', 'whs_dcount', 'whs_dpost', 'whs_dphone1', 'whs_dphone2', 'whs_dphone3'        , 
     ];
     protected $useTimestamps   = true;
     protected $validationRules = [
-        'name'      => 'required|alpha_numeric_punct|min_length[3]|max_length[100]',
-        'country_id'      => 'required',
-        'state_id'      => 'required',
+        'loc_code'      => 'required|is_unique[location_master.loc_code]|min_length[3]|max_length[12]',
+        'comp_code'      => 'required',
+        'whs_code'      => 'required',
+        'site_code'      => 'required',
+        'loc_name'      => 'required',
+        'loc_pic'      => 'required',
     ];
 
-    protected $column_order = ['id', 'name', 'country', 'states'];
-    protected $column_search = ['name', 'country', 'states'];
+    protected $column_order = ['id', 'whs_code', 'comp_code', 'site_code', 'loc_code', 'loc_name', 'loc_pic'];
+    protected $column_search = ['whs_code','loc_code', 'comp_code', 'site_code', 'loc_name', 'loc_pic'];
     protected $order = ['id' => 'ASC'];
     protected $request;
     protected $db;
@@ -83,24 +88,22 @@ class CitiesModel extends Model
         return $tbl_storage->countAllResults();
     }
 
-    public function getByCountry($id = '')
-    {
-        $this->dt->where('country_id', $id);
-        $query = $this->dt->get();
-        return $query->getResult();        
-    }
-
-    public function getByState($id = '')
-    {
-        $this->dt->where('state_id', $id);
-        $query = $this->dt->get();
-        return $query->getResult();        
-    }
-
-    public function getCity($id = '')
+    public function getLocation($id = '')
     {
         $this->dt->where('id', $id);
         $query = $this->dt->get();
         return $query->getResult();        
+    }
+
+    function updateData($id, $data) 
+    {
+        $this->dt->where('id', $id);
+        return $this->dt->update($data);
+    }
+
+    function deleteData($id) 
+    {
+        $this->dt->where('id', $id);
+        return $this->dt->delete();
     }
 }

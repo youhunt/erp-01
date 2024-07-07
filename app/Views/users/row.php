@@ -12,7 +12,7 @@
                                                 <a href="<?= base_url(); ?>users/changePassword/<?= $row->id;?>" class="btn btn-warning btn-circle btn-sm" title="Ubah Password" >
                                                     <i class="fas fa-key"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-success btn-circle btn-sm btn-change-group" data-id="<?= $row->id;?>" title="Ubah Grup">
+                                                <a href="#" class="btn btn-danger btn-circle btn-sm btn-change-group" data-id="<?= $row->id;?>" title="Ubah Grup">
                                                     <i class="fas fa-tasks"></i>
                                                 </a>
                                             </td>

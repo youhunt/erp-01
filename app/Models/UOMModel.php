@@ -88,4 +88,16 @@ class UOMModel extends Model
         $query = $this->dt->get();
         return $query->getResult();        
     }
+
+    function updateData($id, $data) 
+    {
+        $this->dt->where('id', $id);
+        return $this->dt->update($data);
+    }
+
+    function deleteData($id) 
+    {
+        $this->dt->where('id', $id);
+        return $this->dt->delete();
+    }
 }

@@ -97,7 +97,7 @@
                     "searchable": true
                 }, {
                     data: "no", render: function (data, type, row) {
-                        return '<a href="<?= base_url(); ?>states/edit/' + row.id + '" class="btn btn-warning btn-circle btn-sm" title="Edit" ><i class="fas fa-edit"></i></a><a href="<?= base_url(); ?>cities/add/' + row.id + '" class="btn btn-success btn-circle btn-sm" title="Add States"><i class="fas fa-tasks"></i></a>';
+                        return '<a href="<?= base_url(); ?>states/edit/' + row.id + '" class="btn btn-warning btn-circle btn-sm" title="Edit" ><i class="fas fa-edit"></i></a><a href="<?= base_url(); ?>cities/add/' + row.id + '" class="btn btn-danger btn-circle btn-sm" title="Add States"><i class="fas fa-tasks"></i></a>';
                     }
                 },
             ]

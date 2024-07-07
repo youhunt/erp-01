@@ -88,4 +88,11 @@ class StatesModel extends Model
         $query = $this->dt->get();
         return $query->getResult();        
     }
+
+    public function getByCountry($id = '')
+    {
+        $this->dt->where('country_id', $id);
+        $query = $this->dt->get();
+        return $query->getResult();        
+    }
 }

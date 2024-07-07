@@ -41,6 +41,10 @@
             <a class="collapse-item <?= ($submenu === 'cities' ? 'active' : '' ); ?>" href="<?= base_url() ?>cities/index">Cities</a>
             <hr style="margin-top: .5rem; margin-bottom: .5rem;"/>
             <a class="collapse-item <?= ($submenu === 'company' ? 'active' : '' ); ?>" href="<?= base_url() ?>company/index">Company Master</a>
+            <a class="collapse-item <?= ($submenu === 'site' ? 'active' : '' ); ?>" href="<?= base_url() ?>site/index">Site Master</a>
+            <a class="collapse-item <?= ($submenu === 'dept' ? 'active' : '' ); ?>" href="<?= base_url() ?>department/index">Department Master</a>
+            <a class="collapse-item <?= ($submenu === 'whs' ? 'active' : '' ); ?>" href="<?= base_url() ?>warehouse/index">Warehouse Master</a>
+            <a class="collapse-item <?= ($submenu === 'loc' ? 'active' : '' ); ?>" href="<?= base_url() ?>location/index">Location Master</a>
         </div>
     </div>
 </li>

@@ -30,15 +30,12 @@ class Countries extends BaseController
 
             foreach ($lists as $list) {
                 $no++;
-                if ($list->id !== '1') {
-                    $row = [];
-                    $row['id'] = $list->id;
-                    $row['name'] = $list->name;
-                    $row['region'] = $list->region;
-                    $row['subregion'] = $list->subregion;
-                    $data[] = $row;
-                }
-                
+                $row = [];
+                $row['id'] = $list->id;
+                $row['name'] = $list->name;
+                $row['region'] = $list->region;
+                $row['subregion'] = $list->subregion;
+                $data[] = $row;
             }
 
             $output = [
@@ -50,5 +47,12 @@ class Countries extends BaseController
 
             echo json_encode($output);
         }
+    }
+
+    public function getAll()
+    {
+        $model = new StatesModel();
+        $data = $model->select(['id','name'])->getResult();
+        return json_encode($data);
     }
 }

@@ -2,8 +2,18 @@
 
 <?= $this->section('page-content') ?>
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+                        <div class="card-header py-3" style="padding: 0 !important;">
+                            <nav class="navbar navbar-expand navbar-light bg-light">
+                                <a class="navbar-brand m-0 font-weight-bold text-primary" href="#">Users</a>
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class="btn btn-primary" href="<?= base_url(); ?>users/add" id="navbarDropdown"
+                                            role="button" >
+                                            Add
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -51,7 +61,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Choose "Yes" to update.</div>
+                <div class="modal-body">Choose "Yes" to <span id="msgActive"></span>.</div>
                 <div class="modal-footer">
                     <input type="hidden" name="id" class="id">
                     <input type="hidden" name="active" class="active">
@@ -158,7 +168,7 @@
                     }
                 }, {
                     data: "no", render: function (data, type, row) {
-                        return '<a href="<?= base_url(); ?>users/changePassword/' + row.id + '" class="btn btn-warning btn-circle btn-sm" title="Ubah Password" ><i class="fas fa-key"></i></a><a href="#" class="btn btn-success btn-circle btn-sm btn-change-group" data-id="'+ row.id + '" title="Ubah Grup"><i class="fas fa-tasks"></i></a>';
+                        return '<a href="<?= base_url(); ?>users/changePassword/' + row.id + '" class="btn btn-warning btn-circle btn-sm" title="Ubah Password" ><i class="fas fa-key"></i></a><a href="#" class="btn btn-danger btn-circle btn-sm btn-change-group" data-id="'+ row.id + '" title="Ubah Grup"><i class="fas fa-tasks"></i></a>';
                     }
                 },
             ]
@@ -171,6 +181,14 @@
             // Set data to Form Edit
             $('.id').val(id);
             $('.active').val(active);
+
+            if (active === "1") {
+                msgActive
+
+            } else {
+                msgActive
+
+            }
 
             // Call Modal Edit
             $('#activateModal').modal('show');

@@ -49,7 +49,7 @@
                                         <?php if ($config->validFields === ['email']): ?>
                                             <div class="form-group">
                                                 <input type="email" class="form-control form-control-user <?php if(session('errors.login')) : ?>is-invalid<?php endif ?>"
-                                                    name="login" placeholder="<?=lang('Auth.email')?>">
+                                                    name="login" placeholder="<?=lang('Auth.email')?>" style="padding: .1rem .5rem .1rem .5rem;">
                                                 <div class="invalid-feedback">
                                                     <?= session('errors.login') ?>
                                                 </div>
@@ -57,7 +57,7 @@
                                         <?php else: ?>
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user <?php if(session('errors.login')) : ?>is-invalid<?php endif ?>"
-                                                        name="login" placeholder="<?=lang('Auth.emailOrUsername')?>">
+                                                        name="login" placeholder="<?=lang('Auth.emailOrUsername')?>" style="padding: .1rem .5rem .1rem .5rem;">
                                                 <div class="invalid-feedback">
                                                     <?= session('errors.login') ?>
                                                 </div>
@@ -65,8 +65,8 @@
                                         <?php endif; ?>
 
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user <?php if(session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.password')?>">
-                                            <div class="invalid-feedback">
+                                            <input type="password" name="password" style="padding: .1rem .5rem .1rem .5rem;" class="form-control form-control-user <?php if(session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.password')?>">
+                                            <div class="invalid-feedback" >
                                                 <?= session('errors.password') ?>
                                             </div>
                                         </div>
@@ -84,11 +84,11 @@
                                     </form>
                                     <hr>
                                     
-                                    <?php if ($config->allowRegistration) : ?>
+                                    <!-- <?php if ($config->allowRegistration) : ?>
                                         <div class="text-center">
                                             <p><a class="small" href="<?= route_to('register') ?>"><?=lang('Auth.needAnAccount')?></a></p>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif; ?> -->
                                     <?php if ($config->activeResetter): ?>
                                         <div class="text-center">
                                             <p><a class="small" href="<?= route_to('forgot') ?>"><?=lang('Auth.forgotYourPassword')?></a></p>

@@ -107,18 +107,7 @@ class Users extends BaseController
 
     public function index()
 	{
-        // $userModel = new UserModel();
-        // $data['users'] = $userModel->findAll();
-
         $groupModel = new GroupModel();
-
-        // foreach ($data['users'] as $row) {
-        //     if($row->id !== '1') {
-        //         $dataRow['group'] = $groupModel->getGroupsForUser($row->id);
-        //         $dataRow['row'] = $row;
-        //         $data['row'.$row->id] = view('users/row', $dataRow);
-        //     }
-        // }
 
         $data['groups'] = $groupModel->findAll();
         $data['menu'] = 'utility';
@@ -130,19 +119,6 @@ class Users extends BaseController
 
     public function getUsers()  
     {
-        // $userModel = new UserModel();
-        // $data['users'] = $userModel->findAll();
-
-        // $groupModel = new GroupModel();
-
-        // foreach ($data['users'] as $row) {
-        //     if($row->id !== '1') {
-        //         $dataRow['group'] = $groupModel->getGroupsForUser($row->id);
-        //         $dataRow['row'] = $row;
-        //         $data['row'.$row->id] = view('users/row', $dataRow);
-        //     }
-        // }
-
         $request = Services::request();
         $datatable = new UsersModel($request);
         

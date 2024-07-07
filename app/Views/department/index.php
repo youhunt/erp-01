@@ -7,8 +7,7 @@
                                 <a class="navbar-brand m-0 font-weight-bold text-primary" href="#"><?= $title ?></a>
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item dropdown">
-                                        <a class="btn btn-primary" href="<?= base_url(); ?>uom/add" id="navbarDropdown"
-                                            role="button" >
+                                        <a class="btn btn-primary" href="<?= base_url(); ?>department/add" id="navbarDropdown" role="button" >
                                             Add
                                         </a>
                                     </li>
@@ -21,16 +20,22 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>UOM</th>
-                                            <th>Description</th>
-                                            <th style="width: 90px;"></th>
+                                            <th>Company Code</th>
+                                            <th>Site Code</th>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Department PIC</th>
+                                            <th style="width: 45px;"></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>UOM</th>
-                                            <th>Description</th>
+                                            <th>Company Code</th>
+                                            <th>Site Code</th>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Department PIC</th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
@@ -46,13 +51,13 @@
 
 <?= $this->section('div-modal') ?>
     
-    <form action="<?= base_url(); ?>uom/delete" method="post">
-    <div class="modal fade" id="uomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <form action="<?= base_url(); ?>department/delete" method="post">
+    <div class="modal fade" id="deptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="uomLabel">Delete</h5>
+                    <h5 class="modal-title" id="deptLabel">Delete</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -79,47 +84,63 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?php echo site_url('uom/getUOM') ?>",
+                "url": "<?php echo site_url('department/getDepartment') ?>",
                 "type": "POST"
             },
             "columnDefs": [
                 {
                     "targets": [0],
                     "visible": false,
-                    "searchable": false
+                    "searchable": false,
                 },
             ],
             "columns": [
                 {
                     "data": "id",
                     "autoWidth": true,
-                    "searchable": true
+                    "searchable": true,
                 },
                 {
-                    "data": "uom_code",
+                    "data": "comp_code",
                     "autoWidth": true,
-                    "searchable": true
+                    "searchable": true,
                 },
                 {
-                    "data": "uom_desc",
+                    "data": "site_code",
                     "autoWidth": true,
-                    "searchable": true
-                }, {
-                    data: "ID", render: function (data, type, row) {
-                        return '<a href="<?= base_url(); ?>uom/edit/' + row.id + '" class="btn btn-warning btn-circle btn-sm" title="Edit" ><i class="fas fa-edit"></i></a><a href="#" class="btn btn-danger btn-circle btn-sm btn-delete-uom" title="Delete" data-id="' + row.id + '"><i class="fas fa-times"></i></a>';
+                    "searchable": true,
+                },
+                {
+                    "data": "dept_code",
+                    "autoWidth": true,
+                    "searchable": true,
+                },
+                {
+                    "data": "dept_name",
+                    "autoWidth": true,
+                    "searchable": true,
+                }, 
+                {
+                    "data": "dept_pic",
+                    "autoWidth": true,
+                    "searchable": true,
+                }, 
+                {
+                    data: "no", render: function (data, type, row) {
+                        return '<a href="<?= base_url(); ?>department/edit/' + row.id + '" class="btn btn-warning btn-circle btn-sm" title="Edit" ><i class="fas fa-edit"></i></a><a href="#" class="btn btn-danger btn-circle btn-sm btn-delete-dept" title="Delete" data-id="' + row.id + '"><i class="fas fa-times"></i></a>';
                     }
                 },
             ]
         });
         
-        $('#dataTable tbody').on('click', '.btn-delete-uom', function() {
+        $('#dataTable tbody').on('click', '.btn-delete-dept', function() {
             const id = $(this).data('id');
             
             // Set data to Form Edit
             $('.id').val(id);
 
             // Call Modal Edit
-            $('#uomModal').modal('show');
+            $('#deptModal').modal('show');
         });
 
     });

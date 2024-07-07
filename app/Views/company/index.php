@@ -2,8 +2,18 @@
 
 <?= $this->section('page-content') ?>
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Company</h6>
+                        <div class="card-header py-3" style="padding: 0 !important;">
+                            <nav class="navbar navbar-expand navbar-light bg-light">
+                                <a class="navbar-brand m-0 font-weight-bold text-primary" href="#"><?= $title ?></a>
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class="btn btn-primary" href="<?= base_url(); ?>company/add" id="navbarDropdown"
+                                            role="button" >
+                                            Add
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -15,7 +25,7 @@
                                             <th>Name</th>
                                             <th>Company PIC</th>
                                             <th>Company Tax ID</th>
-                                            <th style="width: 90px;"></th>
+                                            <th style="width: 45px;"></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -40,23 +50,22 @@
 
 <?= $this->section('div-modal') ?>
     
-    <form action="<?= base_url(); ?>users/activate" method="post">
-    <div class="modal fade" id="activateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <form action="<?= base_url(); ?>company/delete" method="post">
+    <div class="modal fade" id="companyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
+                    <h5 class="modal-title" id="companyLabel">Delete</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Pilih "Ya" untuk mengupdate User</div>
+                <div class="modal-body">Choose "Yes" to delete</div>
                 <div class="modal-footer">
                     <input type="hidden" name="id" class="id">
-                    <input type="hidden" name="active" class="active">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-                    <button type="submit" class="btn btn-primary">Ya</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
                 </div>
             </div>
         </div>
@@ -81,60 +90,48 @@
                 {
                     "targets": [0],
                     "visible": false,
-                    "searchable": false
+                    "searchable": false,
                 },
             ],
             "columns": [
                 {
                     "data": "id",
                     "autoWidth": true,
-                    "searchable": true
+                    "searchable": true,
                 },
                 {
-                    "data": "comp_code"
+                    "data": "comp_code",
                     "autoWidth": true,
-                    "searchable": true
+                    "searchable": true,
                 },
                 {
                     "data": "comp_name",
                     "autoWidth": true,
-                    "searchable": true
+                    "searchable": true,
                 }, {
                     "data": "comp_pic",
                     "autoWidth": true,
-                    "searchable": true
+                    "searchable": true,
                 }, {
                     "data": "comp_taxid",
                     "autoWidth": true,
-                    "searchable": true
+                    "searchable": true,
                 }, {
                     data: "no", render: function (data, type, row) {
-                        return '<a href="<?= base_url(); ?>company/edit/' + row.id + '" class="btn btn-warning btn-circle btn-sm" title="Edit" ><i class="fas fa-edit"></i></a><a href="<?= base_url(); ?>states/add/' + row.id + '" class="btn btn-success btn-circle btn-sm" title="Add States"><i class="fas fa-tasks"></i></a>';
+                        return '<a href="<?= base_url(); ?>company/edit/' + row.id + '" class="btn btn-warning btn-circle btn-sm" title="Edit" ><i class="fas fa-edit"></i></a><a href="#" class="btn btn-danger btn-circle btn-sm btn-delete-company" title="Delete" data-id="' + row.id + '"><i class="fas fa-times"></i></a>';
                     }
                 },
             ]
         });
         
-        $('#dataTable tbody').on('click', '.btn-active-users', function() {
-            const id = $(this).data('id');
-            const active = $(this).data('active');
-            
-            // Set data to Form Edit
-            $('.id').val(id);
-            $('.active').val(active);
-
-            // Call Modal Edit
-            $('#activateModal').modal('show');
-        });
-
-        $('#dataTable tbody').on('click', '.btn-change-group', function() {
-            // get data from button edit
+        $('#dataTable tbody').on('click', '.btn-delete-company', function() {
             const id = $(this).data('id');
             
             // Set data to Form Edit
             $('.id').val(id);
+
             // Call Modal Edit
-            $('#changeGroupModal').modal('show');
+            $('#companyModal').modal('show');
         });
 
     });

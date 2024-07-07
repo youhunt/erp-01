@@ -34,14 +34,11 @@ class States extends BaseController
 
             foreach ($lists as $list) {
                 $no++;
-                if ($list->id !== '1') {
-                    $row = [];
-                    $row['id'] = $list->id;
-                    $row['name'] = $list->name;
-                    $row['country'] = $countriesModel->getCountry($list->country_id)[0]->name;
-                    $data[] = $row;
-                }
-                
+                $row = [];
+                $row['id'] = $list->id;
+                $row['name'] = $list->name;
+                $row['country'] = $countriesModel->getCountry($list->country_id)[0]->name;
+                $data[] = $row;
             }
 
             $output = [
@@ -53,5 +50,13 @@ class States extends BaseController
 
             echo json_encode($output);
         }
+    }
+
+    public function ByCountry($id = null)
+    {
+        $request = Services::request();
+        $model = new StatesModel($request);
+        $data = $model->getByCountry($id);
+        return json_encode($data);
     }
 }

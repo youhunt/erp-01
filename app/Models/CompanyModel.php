@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use CodeIgniter\HTTP\RequestInterface;
 
-class CitiesModel extends Model
+class CompanyModel extends Model
 {
 
     protected $table          = 'company_master';
@@ -19,6 +19,7 @@ class CitiesModel extends Model
     protected $validationRules = [
         'comp_code'      => 'required|is_unique[company_master.comp_code]|min_length[3]|max_length[12]',
         'comp_name'      => 'required',
+        'comp_pic'      => 'required',
         'comp_taxid'      => 'required',
     ];
 
@@ -84,4 +85,22 @@ class CitiesModel extends Model
         return $tbl_storage->countAllResults();
     }
 
+    public function getCompany($id = '')
+    {
+        $this->dt->where('id', $id);
+        $query = $this->dt->get();
+        return $query->getResult();        
+    }
+
+    function updateData($id, $data) 
+    {
+        $this->dt->where('id', $id);
+        return $this->dt->update($data);
+    }
+
+    function deleteData($id) 
+    {
+        $this->dt->where('id', $id);
+        return $this->dt->delete();
+    }
 }
