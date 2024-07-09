@@ -17,6 +17,8 @@ class Cities extends BaseController
         $data['submenu'] = 'cities';
 
         $data['title'] = 'Cities';
+        $data['title_meta'] = view('partials/title-meta', ['title' => 'Cities']);
+        $data['page_title'] = view('partials/page-title', ['title' => 'Cities', 'pagetitle' => 'MasterData']);
         return view('cities/index', $data);
 	}
 

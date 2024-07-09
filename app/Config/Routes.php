@@ -5,6 +5,9 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
+$routes->get('/lang/{locale}', 'Language::index');
+
 $routes->get('/', 'Users::dashboard');
 $routes->get('users/dashboard', 'Users::dashboard');
 $routes->get('users/index', 'Users::index', ['filter' => 'role:administrator']);
@@ -16,13 +19,16 @@ $routes->post('users/save', 'Users::save', ['filter' => 'role:administrator']);
 $routes->post('users/changeGroup', 'Users::changeGroup', ['filter' => 'role:administrator']);
 $routes->post('users/activate', 'Users::activate', ['filter' => 'role:administrator']);
 
+$routes->get('countries', 'Countries::index', ['filter' => 'role:administrator']);
 $routes->get('countries/index', 'Countries::index', ['filter' => 'role:administrator']);
 $routes->post('countries/getCountries', 'Countries::getCountries', ['filter' => 'role:administrator']);
 
+$routes->get('states', 'States::index', ['filter' => 'role:administrator']);
 $routes->get('states/index', 'States::index', ['filter' => 'role:administrator']);
 $routes->get('states/ByCountry/(:segment)', 'States::ByCountry/$1', ['filter' => 'role:administrator']);
 $routes->post('states/getStates', 'States::getStates', ['filter' => 'role:administrator']);
 
+$routes->get('cities', 'Cities::index', ['filter' => 'role:administrator']);
 $routes->get('cities/index', 'Cities::index', ['filter' => 'role:administrator']);
 $routes->get('cities/ByCountry/(:segment)', 'Cities::ByCountry/$1', ['filter' => 'role:administrator']);
 $routes->get('cities/ByState/(:segment)', 'Cities::ByState/$1', ['filter' => 'role:administrator']);

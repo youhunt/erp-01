@@ -31,6 +31,9 @@ class Users extends BaseController
         ];
         $data['menu'] = 'utility';
         $data['submenu'] = 'users';
+        $data['title_meta'] = view('partials/title-meta', ['title' => 'Users']);
+        $data['page_title'] = view('partials/page-title', ['title' => 'Users', 'pagetitle' => 'MasterData']);
+       
         return view('users/dashboard', $data); 
     }
 

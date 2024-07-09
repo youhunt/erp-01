@@ -14,6 +14,8 @@ class Countries extends BaseController
         $data['submenu'] = 'countries';
 
         $data['title'] = 'Countries';
+        $data['title_meta'] = view('partials/title-meta', ['title' => 'Countries']);
+        $data['page_title'] = view('partials/page-title', ['title' => 'Countries', 'pagetitle' => 'MasterData']);
         return view('countries/index', $data);
 	}
 

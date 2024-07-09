@@ -16,6 +16,8 @@ class States extends BaseController
         $data['submenu'] = 'states';
 
         $data['title'] = 'States';
+        $data['title_meta'] = view('partials/title-meta', ['title' => 'States']);
+        $data['page_title'] = view('partials/page-title', ['title' => 'States', 'pagetitle' => 'MasterData']);
         return view('states/index', $data);
 	}
 
